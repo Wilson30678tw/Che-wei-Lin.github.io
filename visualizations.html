@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> visualization Website </title>
+    
+
+    <!--script src="https://cdn.jsdelivr.net/npm/chart.js"></script-->
+</head>
+
+<body>
+    <h1> IAT355 visualization barchart</h1>
+    <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+        
+        
+        <!-- Y 轴 -->
+        <text x="10" y="60">10</text>
+        <text x="15" y="110">8</text>
+        <text x="15" y="150">6</text>
+        <text x="15" y="185">4</text>
+        <text x="15" y="225">2</text>
+        <text x="15" y="260">0</text>
+
+        <!-- X 轴 -->
+        <text x="60" y="270">Rice</text>
+        <text x="160" y="270">Noodle</text>
+        <text x="260" y="270">Steak</text>
+        <text x="360" y="270">Burger</text>
+
+        <!-- 柱子 -->
+        <rect class="bar" x="50" y="100" width="50" height="150" data-label="Rice" data-value="8"></rect>
+        <rect class="bar" x="150" y="50" width="50" height="200" data-label="Noodle" data-value="10"></rect>
+        <rect class="bar" x="250" y="200" width="50" height="50" data-label="Steak" data-value="3"></rect>
+        <rect class="bar" x="350" y="230" width="50" height="20" data-label="Burger" data-value="1"></rect>
+
+        <!-- Y 轴 -->
+        <line x1="40" y1="20" x2="40" y2="250" stroke="black"></line>
+
+        <!-- X 轴 -->
+        <line x1="40" y1="250" x2="450" y2="250" stroke="black"></line>
+    </svg>
+
+
+    <div class="tooltip" id="tooltip"></div>
+    
+    <h1> IAT355 visualization piechart</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+             
+            
+            <!-- 圓餅圖 -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="400" height="400">
+                <g transform="translate(200, 200)">
+                    <path class="slice" d="M0 -180 A180 180 0 1 1 -138.6 115.5 L0 0 Z" fill="#1f77b4" data-name="Noodle" data-value="10"/>
+                    <path class="slice" d="M-138.6 115.5 A180 180 0 0 1 -138.6 -115.5 L0 0 Z" fill="#ff7f0e" data-name="Rice" data-value="8"/>
+                    <path class="slice" d="M-138.6 -115.5 A180 180 0 0 1 -49.3 -173.2 L0 0 Z" fill="#2ca02c" data-name="Steak" data-value="3"/>
+                    <path class="slice" d="M-49.3 -173.2 A180 180 0 0 1 0 -180 L0 0 Z" fill="#d62728" data-name="Burger" data-value="1"/>
+                </g>
+            </svg>
+            
+            <!-- 圖例 -->
+            <g transform="translate(380, 50)">
+              <rect x="0" y="0" width="20" height="20" fill="#1f77b4"/>
+              <text x="30" y="15" font-size="16">Noodle (10)</text>
+              
+              <rect x="0" y="30" width="20" height="20" fill="#ff7f0e"/>
+              <text x="30" y="45" font-size="16">Rice (8)</text>
+              
+              <rect x="0" y="60" width="20" height="20" fill="#2ca02c"/>
+              <text x="30" y="75" font-size="16">Steak (3)</text>
+              
+              <rect x="0" y="90" width="20" height="20" fill="#d62728"/>
+              <text x="30" y="105" font-size="16">Burger (1)</text>
+            </g>
+          </svg>
+          <div class="tooltipCir" id="tooltipCir"></div>
+          
+
+    <!--div class="tooltipCir" id="tooltipCir"></div-->
+
+    <script src="vis.js"></script> 
+
+</body>
+</html>
