@@ -1,20 +1,20 @@
-// Get all images with the class "zoom"
+// zoom 图像
 const images = document.querySelectorAll('.zoom');
 
-// Loop through each image and add mouseover and mouseout event listeners
+// 鼠标悬停和鼠标移出事件
 images.forEach(img => {
   img.addEventListener('mouseover', () => {
-    // Reset all images to their original size (in case others are still zoomed)
+     // 将图像重置为原始大小
     images.forEach(image => {
       image.style.transform = 'scale(1)'; // Ensure all images are reset
     });
 
-    // Scale the currently hovered image
+    // 調整大小
     img.style.transform = 'scale(1.2)';
   });
 
   img.addEventListener('mouseout', () => {
-    // Reset the current image back to its original scale when mouse leaves
+  
     img.style.transform = 'scale(1)';
   });
 });
