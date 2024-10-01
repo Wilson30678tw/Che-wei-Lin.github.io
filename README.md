@@ -6,3 +6,7 @@ In this personal website mainly use HTML as the main language to structure, whic
  The purpose of this website is to display my personal information, including my education and experience. It also allows you to view past projects that I have completed by clicking on the images that I have set up.
 
 By clicking on Visualizations in the top navigation bar you can see the two charts I made for this assignment, one is a bar chart and the other is a pie chart. The bar chart and the pie chart are drawn using SVG in HTML, and interactive elements are added to them. The interactive elements of the two charts are done through Javascript, adding a mouse listener in javascript to realize that the mouse can hover over the chart to see what the current data represents.  Currently, only Visualizations are available in the navigation bar, and these will be updated gradually as we continue to work on them.
+
+
+**Update**
+A3 need to click the nav-bar, the visualData button is the A3. Click the visualData will direct link to the Assignment 3 - Vega-Lite Intro and show the chart I create for this assignment.

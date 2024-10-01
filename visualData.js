@@ -96,32 +96,27 @@ vegaEmbed("#view_sale", vlsalebar).then((result) => {
   view.run();
 });
 
-const publisherData = [
-    {"Publisher": "Nintendo", "Global_Sales": 1786.56},
-    {"Publisher": "Electronic Arts", "Global_Sales": 1110.32},
-    {"Publisher": "Activision", "Global_Sales": 727.46},
-    {"Publisher": "Sony Computer Entertainment", "Global_Sales": 607.50},
-    {"Publisher": "Ubisoft", "Global_Sales": 473.76},
-    {"Publisher": "Take-Two Interactive", "Global_Sales": 410.65},
-    {"Publisher": "THQ", "Global_Sales": 269.62},
-    {"Publisher": "Sega", "Global_Sales": 256.07},
-    {"Publisher": "Namco Bandai Games", "Global_Sales": 245.40},
-    {"Publisher": "Konami Digital Entertainment", "Global_Sales": 217.47},
-    {"Publisher": "Microsoft Game Studios", "Global_Sales": 214.50},
-    {"Publisher": "Other", "Global_Sales": 4673.72}  // Other publishers
-];
-  const vlPublisherPie = vl
+const superMarioData = [
+            {
+                "Name": "Super Mario Bros.",
+                "NA_Sales": 29.08,
+                "EU_Sales": 3.58,
+                "JP_Sales": 6.81,
+                "Other_Sales": 0.77
+            }
+        ];
+  const vlSPArc = vl
   .markArc({ innerRadius: 100 })  // Creates a donut chart
-  .data(publisherData)
+  .data(superMarioData)
+  .transform(
+    vl.fold(['NA_Sales', 'EU_Sales', 'JP_Sales', 'Other_Sales'])
+        .as('Region', 'Sales')
+)
   .encode(
-    vl.theta().fieldQ("Global_Sales").title("Global Sales (in millions)"),
-    vl.color().fieldN("Publisher").title("Publisher")
+    vl.theta().fieldQ("Sales").title("Global Sales (in millions)"),
+    vl.color().fieldN("Region").title("Region")
     .scale({
-        range: [
-            "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", 
-            "#ffd92f", "#e5c494", "#b3b3b3", "#8dd3c7", "#ffffb3", 
-            "#bebada", "#fb8072", "#80b1d3"
-        ] 
+        range: ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3']
     })
   )
   .width(1080)
@@ -129,13 +124,11 @@ const publisherData = [
   .toSpec();
 
 // Render the pie chart
-vegaEmbed("#publisher_pie_chart", vlPublisherPie).then((result) => {
+vegaEmbed("#vlSPArc", vlSPArc).then((result) => {
   const view = result.view;
   view.run();
 });
    
-
-  
 
 }
 
