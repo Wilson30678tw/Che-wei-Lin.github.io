@@ -21,53 +21,55 @@ async function render() {
   
     // create a bar chart
     const vlsp = vl
-    .markBar()
+    .markCircle({ size: 100 })  
     .data(data)
     .encode(
-      vl.y().fieldN("Platform").title("Platform"),  
-      vl.x().fieldQ("Global_Sales").aggregate("sum").title("Total Global Sales (in millions)"),  
-      vl.color().fieldN("Genre").title("Genre") 
-      .scale({
-        range: [
-            "#4e79a7", "#f28e2b", "#76b7b2", "#e15759", "#59a14f",
-            "#edc949", "#af7aa1", "#bab0ac", "#ff9da7", "#9c755f", "#d4a6c8"
-          ]
+        vl.y().fieldN("Platform").title("Platform"),  
+        vl.x().fieldQ("Global_Sales").aggregate("sum").title("Total Global Sales (in millions)"),  
+        vl.color().fieldN("Genre").title("Genre")  
+        .scale({
+            range: [
+                "#4e79a7", "#f28e2b", "#76b7b2", "#e15759", "#59a14f",
+                "#edc949", "#af7aa1", "#bab0ac", "#ff9da7", "#9c755f", "#d4a6c8"
+            ]
         })
     )
-      .width(1280)  
-      .height(720)  
-      .toSpec();
-      // Render the bar chart
-    vegaEmbed("#view", vlsp).then((result) => {
-        const view = result.view;
-        view.run();
-        });
+    .width(1080)  
+    .height(720)  
+    .toSpec();
+
+// Render the dot chart
+vegaEmbed("#view", vlsp).then((result) => {
+    const view = result.view;
+    view.run();
+});
      
      
 
      
  //*2
- const vltimebar = vl
-  .markBar()  // Changed from markLine to markBar
-  .data(data)
-  .encode(
-    vl.x().fieldT("Year").title("Year"),  // Change to fieldT for temporal data type
-    vl.y().fieldQ("Global_Sales").aggregate("sum").title("Total Global Sales (in millions)"),  
-    vl.color().fieldN("Platform").title("Platform")
-      .scale({
-        range: [
-            "#4c8173",  "#d95f0e",   "#6278a1",  "#b55982",  "#759c2c",  "#b89f25",  "#b48b60",  "#828282",  
-            "#7b9bbd",  "#a98f56",  "#7aa395",   "#d18738",  "#557a99",   "#c85852",  "#846487",  "#be94aa",  
-            "#b3b16d",  "#7ea482",  "#b89f56",  "#c2a28f",  "#9bb29a"   
-        ]
-      }) 
-  )
-  .width(1280)
+ const vltimecircle = vl
+ .markCircle()  // Use circle mark to represent data points
+ .data(data)
+ .encode(
+   vl.x().fieldT("Year").title("Year"),  // X-axis 
+   vl.y().fieldN("Platform").title("Platform"),  // Y-axis 
+   vl.size().fieldQ("Global_Sales").aggregate("sum").title("Total Global Sales (in millions)"),  // Circle size based on sales
+   vl.color().fieldN("Platform").title("Platform")  // Use color to differentiate platforms
+     .scale({
+       range: [
+         "#4c8173", "#d95f0e", "#6278a1", "#b55982", "#759c2c", "#b89f25", "#b48b60", "#828282",
+         "#7b9bbd", "#a98f56", "#7aa395", "#d18738", "#557a99", "#c85852", "#846487", "#be94aa",
+         "#b3b16d", "#7ea482", "#b89f56", "#c2a28f", "#9bb29a"
+       ]
+     })
+ )
+  .width(1080)
   .height(720)
   .toSpec();
 
 
-vegaEmbed("#view_tbr", vltimebar).then((result) => {
+vegaEmbed("#view_tbr", vltimecircle).then((result) => {
   const view = result.view;
   view.run();
 });
@@ -79,14 +81,15 @@ const vlsalebar = vl
     vl.fold(['NA_Sales', 'EU_Sales', 'JP_Sales', 'Other_Sales']).as('Region', 'Sales')
   )
   .encode(
-    vl.x().fieldN('Platform').title('Platform'),  
-    vl.y().fieldQ('Sales').aggregate('sum').title('Total Sales (in millions)'), 
-    vl.color().fieldN('Region').title('Region')
+    vl.y().fieldN('Platform').title('Platform'),  // Platforms on y-axis
+    vl.x().fieldQ('Sales').aggregate('sum').title('Total Sales (in millions)'),  // Sales on x-axis
+    vl.color().fieldN('Region').title('Region')  // Color represents different regions
       .scale({
         range: ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3"]
-      })
+      }),
+    vl.order().fieldQ('Sales').aggregate('sum').sort('descending')
   )
-  .width(1280)
+  .width(1080)
   .height(720)
   .toSpec();
 
