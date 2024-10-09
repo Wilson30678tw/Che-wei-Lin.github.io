@@ -130,9 +130,15 @@ const superMarioData = [
 vegaEmbed("#vlSPArc", vlSPArc).then((result) => {
   const view = result.view;
   view.run();
+  const container = document.getElementById("vlSPArc");
+  const caption = document.createElement("h2");
+  caption.textContent = "Sales of Super Mario Bros. in Global";
+  caption.style.textAlign = "center";
+  caption.style.fontSize = "18px";
+  container.appendChild(caption);
 });
-   
 
 }
+
 
 render();
